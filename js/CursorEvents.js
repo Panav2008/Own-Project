@@ -11,18 +11,18 @@ AFRAME.registerComponent("cursor-listener", {
     //  Click Events
     this.el.addEventListener("click", evt => {
       const placesContainer = document.querySelector("#places-container");
-      const { state } = placesContainer.getAttribute("showroom");
+      const { state } = placesContainer.getAttribute("tour");
 
-      if (state === "car-list") {
+      if (state === "places-list") {
         const id = this.el.getAttribute("id");
         const placesId = [
-          "ferrariF50",
-          "mclspd",
-          "pagani",
-          "porche"
+          "taj-mahal",
+          "budapest",
+          "new-york-city",
+          "eiffel-tower"
         ];
         if (placesId.includes(id)) {
-          placesContainer.setAttribute("showroom", {
+          placesContainer.setAttribute("tour", {
             state: "view",
             selectedCard: id
           });
@@ -45,7 +45,7 @@ AFRAME.registerComponent("cursor-listener", {
     const { selectedItemId }=placesContainer.getAttribute("cursor-listener");
     const sideViewPlacesId=["place-1","place-2","place-3","place-4"];
     if (sideViewPlacesId.includes(id)) {
-      placesContainer.setAttribute("showroom",{
+      placesContainer.setAttribute("tour",{
         state:"change-view"
       });
       const skyEl=document.querySelector("#main-container");
@@ -59,7 +59,7 @@ AFRAME.registerComponent("cursor-listener", {
     // Mouse Center Events
     this.el.addEventListener("mouseenter", () => {
       const placeContainer = document.querySelector("#places-container");
-      const { state } = placeContainer.getAttribute("showroom");
+      const { state } = placeContainer.getAttribute("tour");
       if (state === "places-list") {
         this.handlePlacesListState();
       }
@@ -67,7 +67,7 @@ AFRAME.registerComponent("cursor-listener", {
   },
   handlePlacesListState: function() {
     const id = this.el.getAttribute("id");
-    const placesId = ["ferrariF50", "mclspd", "pagani", "porche"];
+    const placesId = ["taj-mahal", "budapest", "new-york-city", "eiffel-tower"];
     if (placesId.includes(id)) {
       const placeContainer = document.querySelector("#places-container");
       placeContainer.setAttribute("cursor-listener", {
@@ -83,8 +83,8 @@ AFRAME.registerComponent("cursor-listener", {
     // Mouse Leave Events
     this.el.addEventListener("mouseleave", () => {
       const placesContainer = document.querySelector("#places-container");
-      const { state } = placesContainer.getAttribute("showroom");
-      if (state === "car-list") {
+      const { state } = placesContainer.getAttribute("tour");
+      if (state === "places-list") {
         const { selectedItemId } = this.data;
         if (selectedItemId) {
           const el = document.querySelector(`#${selectedItemId}`);
